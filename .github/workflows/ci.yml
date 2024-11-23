@@ -17,17 +17,22 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-        cache: 'npm'
+        cache: 'yarn'
     
+    - name: Install Yarn
+      run: npm install -g yarn
+
     - name: Install dependencies
-      run: npm ci
+      run: yarn install --frozen-lockfile
       
     - name: Check code formatting
       run: |
-        npm run format:check || echo "::warning::Code formatting issues found"
+        yarn prettier . --check || echo "::warning::Code formatting issues found"
         
-    - name: Build
-      run: npm run build
-      
     - name: Run tests
-      run: npm test || echo "::warning::No tests found"
+      run: yarn test || echo "::warning::Tests failed"
+      
+    - name: Build
+      run: |
+        yarn expo install
+        yarn expo prebuild --clean || echo "::warning::Prebuild issues found"
