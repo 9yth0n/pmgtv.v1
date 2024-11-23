@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { Link } from 'expo-router';
 import { useAuth } from '../../context/AuthContext';
 
 interface AuthFormProps {
@@ -64,6 +65,12 @@ export function AuthForm({ mode }: AuthFormProps) {
                 onChangeText={setPassword}
                 secureTextEntry
             />
+            
+            {mode === 'signin' && (
+                <Link href="/reset-password" style={styles.forgotPassword}>
+                    Forgot Password?
+                </Link>
+            )}
             
             <TouchableOpacity 
                 style={styles.button}
@@ -152,5 +159,11 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 16,
         fontWeight: '600',
+    },
+    forgotPassword: {
+        color: '#007AFF',
+        textAlign: 'right',
+        marginBottom: 20,
+        marginTop: -10,
     },
 });
