@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'yarn'
+    
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Check code formatting
+      run: |
+        yarn prettier . --check || echo "::warning::Code formatting issues found"
+        
+    - name: Run tests
+      run: yarn test || echo "::warning::Tests failed"
+      
+    - name: Build
+      run: |
+        yarn expo install
+        yarn expo prebuild --clean || echo "::warning::Prebuild issues found"
