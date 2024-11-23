@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Default dark theme */
+  :root {
+    color-scheme: dark;
+    --background-color: theme('colors.background');
+    --text-color: theme('colors.text');
+  }
+
+  body {
+    @apply bg-background text-text antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Trading Components */
+  .price-up {
+    @apply text-chart-up font-mono;
+  }
+  
+  .price-down {
+    @apply text-chart-down font-mono;
+  }
+
+  .ticker-symbol {
+    @apply font-mono text-ticker tracking-wide font-bold;
+  }
+
+  .price-change {
+    @apply font-mono text-change;
+  }
+
+  /* Chart Components */
+  .chart-container {
+    @apply w-full h-full rounded-lg bg-surface shadow-lg overflow-hidden;
+  }
+
+  .chart-header {
+    @apply flex items-center justify-between p-4 border-b border-border;
+  }
+
+  .chart-toolbar {
+    @apply flex items-center space-x-2 p-2 bg-surface/80 backdrop-blur-sm;
+  }
+
+  /* Common UI Components */
+  .btn {
+    @apply px-4 py-2 rounded-md font-semibold transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary hover:bg-primary-dark text-white;
+  }
+
+  .btn-secondary {
+    @apply btn border border-border hover:bg-surface;
+  }
+
+  .input {
+    @apply px-4 py-2 bg-surface border border-border rounded-md 
+           focus:outline-none focus:ring-2 focus:ring-primary/20
+           text-text placeholder:text-text-secondary;
+  }
+
+  .card {
+    @apply bg-surface rounded-lg border border-border shadow-md;
+  }
+
+  .card-header {
+    @apply p-4 border-b border-border;
+  }
+
+  .card-body {
+    @apply p-4;
+  }
+
+  /* Layout Components */
+  .container-fluid {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
+
+  .grid-cols-auto-fit {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+}
+
+@layer utilities {
+  /* Custom Scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full hover:bg-primary/50;
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply bg-surface/80 backdrop-blur-sm;
+  }
+
+  /* Trading Utilities */
+  .flash-green {
+    animation: flash-green 0.5s ease-in-out;
+  }
+
+  .flash-red {
+    animation: flash-red 0.5s ease-in-out;
+  }
+
+  @keyframes flash-green {
+    0% { background-color: transparent; }
+    50% { background-color: theme('colors.success/10'); }
+    100% { background-color: transparent; }
+  }
+
+  @keyframes flash-red {
+    0% { background-color: transparent; }
+    50% { background-color: theme('colors.error/10'); }
+    100% { background-color: transparent; }
+  }
+}

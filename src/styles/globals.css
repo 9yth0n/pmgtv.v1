@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-background text-text;
+  }
+  body {
+    @apply m-0 p-0 min-h-screen;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface rounded-lg shadow-md p-4;
+  }
+  .card-body {
+    @apply space-y-4;
+  }
+}
+
+@layer utilities {
+  .text-h3 {
+    @apply text-xl font-semibold;
+  }
+  .text-h4 {
+    @apply text-lg font-semibold;
+  }
+}

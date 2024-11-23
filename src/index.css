@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  @apply bg-secondary-dark text-white;
+}
+
+.chart-container {
+  @apply flex-1 bg-secondary rounded-2xl overflow-hidden shadow-lg;
+}
+
+.input-field {
+  @apply w-full px-4 py-2 bg-secondary border border-primary rounded-xl text-white focus:ring-2 focus:ring-primary focus:border-transparent;
+}
+
+.button-primary {
+  @apply px-6 py-2 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-colors duration-200;
+}
+
+.quick-select-button {
+  @apply px-4 py-2 rounded-full border border-primary transition-colors duration-200;
+}
+
+.quick-select-button.active {
+  @apply bg-primary text-white;
+}
+
+.timeframe-button {
+  @apply px-3 py-1.5 rounded-full border border-primary text-sm transition-colors duration-200;
+}
+
+.timeframe-button.active {
+  @apply bg-primary text-white;
+}
